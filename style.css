@@ -1,0 +1,33 @@
+* {
+  margin:0;
+  padding:0;
+}
+body {
+  background-color: #eee;
+  padding:10px;
+}
+.hide {
+  visibility: hidden;
+}
+a#retrigger {
+  display: none;
+}
+ul#snapshots {
+  list-style: none;
+  margin-top:6px;
+}
+ul#snapshots li {
+  display: inline-block;
+  margin-right:10px;
+}
+ul#snapshots li a img {
+  width:120px;
+  -webkit-transition: all 0.2s;
+}
+ul#snapshots li a:hover img {
+    -webkit-filter: brightness(125%);
+}
+video {
+  width:250px;
+  margin-right:10px;
+}

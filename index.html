@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>getUserMedia direct pixel manipulation examples</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="controls">
+        <a id="retrigger" href="#">Again</a>
+        <p>Speed</p>
+        <p>Direction</p>
+      </div>
+      <video autoplay>
+      </video><canvas id="display">
+        Sorry, your browser does not support canvas.
+      </canvas><ul id="snapshots">
+      </ul>
+    </div>
+    <canvas id="hiddenCanvas" class="hide"></canvas>
+    <script src="script.js"></script>
+  </body>
+</html>
