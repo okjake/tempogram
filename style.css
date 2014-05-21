@@ -38,11 +38,13 @@ body {
  * error messaging
  */
 
-#noJs {
+#noJs,
+#intro {
   text-align:center;
   margin-top: 12px;
 }
 
+#intro,
 #notSupported,
 #noCamera {
   display: none;

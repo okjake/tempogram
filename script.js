@@ -1,9 +1,7 @@
 Sc = {
-
   c : {
     canvas       : document.getElementById('display'),
     hiddenCanvas : document.getElementById('hiddenCanvas'),
-    video        : document.querySelector('video'),
     snapShots    : document.getElementById('snapShots'),
     reTrigger    : document.getElementById('reTrigger'),
     rtPlaceholder: document.getElementById('noReTrigger'),
@@ -14,6 +12,7 @@ Sc = {
     controls     : document.getElementById('controls'),
     capture      : document.getElementById('capture'),
     results      : document.getElementById('results'),
+    video        : document.querySelector('video'),
     ctx          : null,
     hiddenCtx    : null,
     width        : null,
@@ -32,11 +31,13 @@ Sc = {
     },
     fucknose : function () {
       Sc.c.noCamera.style.display = "block";
+      document.getElementById('intro').style.display = "none";
     }
   },
 
   setup : function(settings) {
     document.getElementById('noJs').style.display = "none";
+    document.getElementById('intro').style.display = "block";
     document.getElementById('container').style.display = "block";
 
     if (settings) {
@@ -67,6 +68,7 @@ Sc = {
   },
 
   onMetaData : function(e) {
+    document.getElementById('intro').style.display = "none";
     Sc.c.width = Sc.c.canvas.width  = Sc.c.hiddenCanvas.width = e.target.videoWidth;
     Sc.c.height = Sc.c.canvas.height = Sc.c.hiddenCanvas.height = e.target.videoHeight;
     Sc.c.capture.style.width = e.target.videoWidth + 'px';

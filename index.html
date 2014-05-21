@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>slit scan web cam</title>
+    <title>Tempogram</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-
-    <div id="noJs">
-      <p>Sorry, there was a problem loading javascript in your browser.<br>This demo won't work without it.</p>
-    </div>
-
+    <p id="intro">Please allow access to your webcam to create experimental slit-scan style images.<br>Everything is performed in your browser, neither the images or video feed are sent anywhere.<br>That said, if you make something interesting, please share it!</p>
+    <p id="noJs">Sorry, there was a problem loading javascript in your browser.<br>This demo won't work without it.</p>
     <div id="container">
       <div id="notSupported">
         <p>Sorry, this demo uses technologies that are not currently supported in your browser.<br>If you'd like to use it, please download <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.</p>
@@ -19,26 +16,26 @@
       <div id="noCamera">
         <p>There was a problem accessing your camera.<br>Please try again and make sure permission is granted.</p>
       </div>
-
       <div id="capture">
         <video autoplay></video>
         <canvas id="display">
           Sorry, your browser does not support canvas.
         </canvas>
       </div>
-
       <div id="controls">
         <a id="reTrigger" href="#">Capture</a><span id="noReTrigger">Capturing</span> an image <a id="dirToggle" href="#">vertically</a> at speed <input type="number" id="frameRate" name="framerate" value="3" min="1" max="30">
       </div>
-
       <div id="results">
         <ul id="snapShots">
         </ul>
       </div>
-
     </div>
-
     <canvas id="hiddenCanvas" class="hide"></canvas>
     <script src="script.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-15403681-4', 'jakepyne.net');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>
