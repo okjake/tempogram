@@ -4,8 +4,16 @@ Sc = {
     canvas       : document.getElementById('display'),
     hiddenCanvas : document.getElementById('hiddenCanvas'),
     video        : document.querySelector('video'),
-    snapshots    : document.getElementById('snapshots'),
-    retrigger    : document.getElementById('retrigger'),
+    snapShots    : document.getElementById('snapShots'),
+    reTrigger    : document.getElementById('reTrigger'),
+    rtPlaceholder: document.getElementById('noReTrigger'),
+    frameRateIn  : document.getElementById('frameRate'),
+    dirToggle    : document.getElementById('dirToggle'),
+    notSupported : document.getElementById('notSupported'),
+    noCamera     : document.getElementById('noCamera'),
+    controls     : document.getElementById('controls'),
+    capture      : document.getElementById('capture'),
+    results      : document.getElementById('results'),
     ctx          : null,
     hiddenCtx    : null,
     width        : null,
@@ -14,20 +22,23 @@ Sc = {
   },
 
   settings : {
-    refresh  : 1,
+    refresh  : 25,
     vertical : true
   },
 
   error : {
     notSupported : function () {
-      alert('getUserMedia not supported.');
+      Sc.c.notSupported.style.display = "block";
     },
     fucknose : function () {
-      alert('Couldn\'t access your camera.');
+      Sc.c.noCamera.style.display = "block";
     }
   },
 
   setup : function(settings) {
+    document.getElementById('noJs').style.display = "none";
+    document.getElementById('container').style.display = "block";
+
     if (settings) {
       if (settings.frameRate) {
         Sc.settings.refresh = 100 / settings.frameRate;
@@ -45,7 +56,9 @@ Sc = {
   setHandlers : function() {
     window.sendFrame = Sc.onFrame,
     document.getElementsByTagName('video')[0].addEventListener('loadedmetadata', this.onMetaData, false);
-    Sc.c.retrigger.onclick = Sc.reTrigger;
+    Sc.c.reTrigger.onclick = Sc.reTrigger;
+    Sc.c.frameRateIn.onchange = Sc.onChangeFrameRate;
+    Sc.c.dirToggle.onclick = Sc.onToggleDirection;
   },
 
   onFrame : function() {
@@ -54,14 +67,16 @@ Sc = {
   },
 
   onMetaData : function(e) {
-    Sc.c.width = Sc.c.canvas.width  = Sc.c.hiddenCanvas.width  = e.target.videoWidth;
+    Sc.c.width = Sc.c.canvas.width  = Sc.c.hiddenCanvas.width = e.target.videoWidth;
     Sc.c.height = Sc.c.canvas.height = Sc.c.hiddenCanvas.height = e.target.videoHeight;
+    Sc.c.capture.style.width = e.target.videoWidth + 'px';
+    Sc.c.results.style.width = e.target.videoWidth + 5 +  'px';
   },
 
   onDone : function() {
-    var image = new Image();
-    var li = document.createElement('li');
-    var a = document.createElement('a');
+    var image = new Image(),
+        li = document.createElement('li'),
+        a = document.createElement('a');
 
     image.src = Sc.c.canvas.toDataURL("image/png");
 
@@ -70,9 +85,29 @@ Sc = {
     a.setAttribute('download', '');
 
     li.appendChild(a);
-    Sc.c.snapshots.appendChild(li);
+    Sc.c.snapShots.appendChild(li);
 
-    Sc.c.retrigger.style.display = 'block';
+    Sc.c.reTrigger.style.display = 'inline';
+    Sc.c.rtPlaceholder.style.display = 'none';
+
+  },
+
+  onChangeFrameRate : function(e) {
+    Sc.settings.refresh = 100 / e.target.value;
+  },
+
+  onToggleDirection : function(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    if (Sc.settings.vertical) {
+      Sc.settings.vertical = false;
+      Sc.c.dirToggle.innerHTML = 'horizontally';
+    }
+    else {
+      Sc.settings.vertical = true;
+      Sc.c.dirToggle.innerHTML = 'vertically';
+    }
   },
 
   processFrame : function() {
@@ -115,6 +150,7 @@ Sc = {
     }
 
     navigator.getUserMedia_({ video: true }, function(stream) {
+      Sc.c.controls.style.display = 'block';
       Sc.c.video.src = window.URL.createObjectURL(stream);
       Sc.onFrame();
     }, Sc.error.fucknose);
@@ -125,9 +161,11 @@ Sc = {
     if (e) {
       e.preventDefault();
     }
+    Sc.c.ctx.clearRect(0, 0, Sc.c.width, Sc.c.height);
     Sc.c.iterator = 0;
     Sc.onFrame();
-    Sc.c.retrigger.style.display = 'none';
+    Sc.c.rtPlaceholder.style.display = 'inline';
+    Sc.c.reTrigger.style.display = 'none';
   }
 }
 

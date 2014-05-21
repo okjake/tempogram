@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>getUserMedia direct pixel manipulation examples</title>
+    <title>slit scan web cam</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div id="container">
-      <div class="controls">
-        <a id="retrigger" href="#">Again</a>
-        <p>Speed</p>
-        <p>Direction</p>
-      </div>
-      <video autoplay>
-      </video><canvas id="display">
-        Sorry, your browser does not support canvas.
-      </canvas><ul id="snapshots">
-      </ul>
+
+    <div id="noJs">
+      <p>Sorry, there was a problem loading javascript in your browser.<br>This demo won't work without it.</p>
     </div>
+
+    <div id="container">
+      <div id="notSupported">
+        <p>Sorry, this demo uses technologies that are not currently supported in your browser.<br>If you'd like to use it, please download <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.</p>
+      </div>
+      <div id="noCamera">
+        <p>There was a problem accessing your camera.<br>Please try again and make sure permission is granted.</p>
+      </div>
+
+      <div id="capture">
+        <video autoplay></video>
+        <canvas id="display">
+          Sorry, your browser does not support canvas.
+        </canvas>
+      </div>
+
+      <div id="controls">
+        <a id="reTrigger" href="#">Capture</a><span id="noReTrigger">Capturing</span> an image <a id="dirToggle" href="#">vertically</a> at speed <input type="number" id="frameRate" name="framerate" value="3" min="1" max="30">
+      </div>
+
+      <div id="results">
+        <ul id="snapShots">
+        </ul>
+      </div>
+
+    </div>
+
     <canvas id="hiddenCanvas" class="hide"></canvas>
     <script src="script.js"></script>
   </body>

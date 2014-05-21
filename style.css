@@ -1,33 +1,144 @@
+/*
+ * Setup
+ */
+
 * {
   margin:0;
   padding:0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: #fafafa;
 }
+
+a {
+  text-decoration: none;
+}
+
 body {
-  background-color: #eee;
-  padding:10px;
+  background-color: #131320;
 }
+
 .hide {
   visibility: hidden;
 }
-a#retrigger {
+
+/*
+ * layout
+ */
+
+#container {
+  display:none;
+  margin: 0 auto;
+  padding: 48px 0;
+  text-align: center;
+  min-height: 100%;
+}
+
+/*
+ * error messaging
+ */
+
+#noJs {
+  text-align:center;
+  margin-top: 12px;
+}
+
+#notSupported,
+#noCamera {
   display: none;
 }
-ul#snapshots {
+
+/*
+ * capture
+ */
+
+#capture {
+  position:relative;
+  width:640px;
+  margin: 0 auto;
+}
+
+#capture video {
+  z-index:0;
+}
+
+#capture canvas {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 50;
+}
+
+#hiddenCanvas {
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+video {
+  -moz-filter: opacity(0.5);
+  -webkit-filter: opacity(0.5);
+  filter: opacity(0.5);
+}
+
+/*
+ * results
+ */
+
+#results {
+  width:645px;
+  margin: 0 auto;
+}
+
+ul#snapShots {
   list-style: none;
-  margin-top:6px;
 }
-ul#snapshots li {
+
+ul#snapShots li {
   display: inline-block;
-  margin-right:10px;
+  margin:2px 2.5px 0 2.5px;
 }
-ul#snapshots li a img {
-  width:120px;
+
+ul#snapShots li a img {
+  width:124px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+ul#snapShots li a:hover img {
+  -webkit-filter: brightness(125%);
+  filter: brightness(125%);
+}
+
+/*
+ * controls
+ */
+
+#controls {
+  padding:20px 0;
+  display: none;
+}
+
+#frameRate,
+#dirToggle {
+  border: none;
+  background-color: #555566;
+  padding: 3px 6px;
+  width: 30px;
+  border-radius: 5px;
   -webkit-transition: all 0.2s;
 }
-ul#snapshots li a:hover img {
-    -webkit-filter: brightness(125%);
+
+#reTrigger {
+  background-color: #556655;
+  padding: 10px;
+  width: 30px;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  display: none;
 }
-video {
-  width:250px;
-  margin-right:10px;
+
+#reTrigger:hover,
+#dirToggle:hover {
+  -webkit-filter: brightness(125%);
 }
