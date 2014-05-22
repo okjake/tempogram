@@ -28,6 +28,7 @@ Sc = {
   error : {
     notSupported : function () {
       Sc.c.notSupported.style.display = "block";
+      document.getElementById('intro').style.display = "none";
     },
     fucknose : function () {
       Sc.c.noCamera.style.display = "block";
