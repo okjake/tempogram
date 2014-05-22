@@ -10,8 +10,23 @@
   color: #fafafa;
 }
 
+h1 {
+  font-size: 3em;
+  font-weight: 300;
+  margin: 48px 0 0;
+}
+
 a {
   text-decoration: none;
+}
+
+p a {
+  color: #CCCCDD;
+  -webkit-transition: all 0.2s;
+}
+
+p a:hover {
+  color: #fafafa;
 }
 
 body {
@@ -101,10 +116,16 @@ ul#snapShots li {
   margin:2px 2.5px 0 2.5px;
 }
 
-ul#snapShots li a img {
+ul#snapShots li a img,
+img.demo {
   width:124px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+}
+
+img.demo {
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 ul#snapShots li a:hover img {
@@ -131,7 +152,8 @@ ul#snapShots li a:hover img {
   -webkit-transition: all 0.2s;
 }
 
-#reTrigger {
+#reTrigger,
+#trigger {
   background-color: #556655;
   padding: 10px;
   width: 30px;
@@ -140,7 +162,13 @@ ul#snapShots li a:hover img {
   display: none;
 }
 
+#trigger {
+  margin: 32px auto;
+  width: 80px;
+}
+
 #reTrigger:hover,
-#dirToggle:hover {
+#dirToggle:hover,
+#trigger:hover {
   -webkit-filter: brightness(125%);
 }

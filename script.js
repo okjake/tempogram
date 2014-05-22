@@ -39,6 +39,7 @@ Sc = {
     document.getElementById('noJs').style.display = "none";
     document.getElementById('intro').style.display = "block";
     document.getElementById('container').style.display = "block";
+    document.getElementById('trigger').style.display = "block";
 
     if (settings) {
       if (settings.frameRate) {
@@ -51,10 +52,10 @@ Sc = {
     Sc.c.ctx = Sc.c.canvas.getContext('2d');
     Sc.c.hiddenCtx = Sc.c.hiddenCanvas.getContext('2d');
     Sc.setHandlers();
-    Sc.startCapture();
   },
 
   setHandlers : function() {
+    document.getElementById('trigger').onclick = Sc.startCapture;
     window.sendFrame = Sc.onFrame,
     document.getElementsByTagName('video')[0].addEventListener('loadedmetadata', this.onMetaData, false);
     Sc.c.reTrigger.onclick = Sc.reTrigger;
