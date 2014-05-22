@@ -146,7 +146,7 @@ Sc = {
   startCapture : function() {
     navigator.getUserMedia_ = (navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
+      //navigator.mozGetUserMedia || todo - fix ff
       navigator.msGetUserMedia);
 
     if (!navigator.getUserMedia_) {
